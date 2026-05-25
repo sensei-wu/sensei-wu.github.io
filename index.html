@@ -160,6 +160,33 @@
       line-height: 1.4;
       transition: color 0.15s ease;
     }
+
+    .fixed {
+      grid-column: 1 / -1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0.9rem 1.1rem;
+      border-bottom: 1px solid var(--rule);
+      background: #fbf8f1;
+    }
+
+    .badge-block {
+      width: 150px;
+      height: 270px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 0 0 1px rgba(26, 26, 24, 0.08);
+      border-radius: 0.45rem;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .badge-block > div {
+      width: 100%;
+      height: 100%;
+    }
  
     /* Footer */
     .footer {
@@ -245,7 +272,23 @@
         <span class="link-label">Credentials</span>
         <span class="link-desc">UT Austin verified badges</span>
       </a>
- 
+
+      <div class="fixed">
+        <div class="badge-block">
+          <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="d2d78f4a-607a-434a-a49f-37bc7fdfa50a"
+               data-share-badge-host="https://www.youracclaim.com">
+          </div>
+        </div>
+      </div>
+
+      <div class="fixed">
+        <div class="badge-block">
+          <div data-iframe-width="150" data-iframe-height="270" data-share-badge-id="d1f81e62-48a8-4699-8c42-3b12380f23c7"
+               data-share-badge-host="https://www.youracclaim.com">
+          </div>
+        </div>
+      </div>
+
       <a class="link-item" href="https://stackoverflow.com/users/2702730/senseiwu" target="_blank" rel="noopener">
         <span class="link-label">Stack Overflow</span>
         <span class="link-desc">Q&amp;A contributions</span>
