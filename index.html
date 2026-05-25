@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zenifer Cheru Veettil</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+    :root {
+      --ink: #1a1a18;
+      --paper: #f5f2eb;
+      --muted: #888880;
+      --accent: #2a4a3e;
+      --rule: #d8d4cc;
+      --mono: 'DM Mono', monospace;
+      --serif: 'Cormorant Garamond', Georgia, serif;
+    }
+ 
+    html { font-size: 16px; }
+ 
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--serif);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 1.5rem;
+    }
+ 
+    /* Subtle grain texture */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+ 
+    .card {
+      position: relative;
+      z-index: 1;
+      max-width: 560px;
+      width: 100%;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+    }
+ 
+    @keyframes rise {
+      to { opacity: 1; transform: translateY(0); }
+    }
+ 
+    /* Header */
+    .header {
+      margin-bottom: 2.5rem;
+    }
+ 
+    .name {
+      font-size: clamp(2rem, 6vw, 2.8rem);
+      font-weight: 300;
+      letter-spacing: -0.01em;
+      line-height: 1.1;
+      color: var(--ink);
+    }
+ 
+    .name em {
+      font-style: italic;
+      color: var(--accent);
+    }
+ 
+    .tagline {
+      margin-top: 0.75rem;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      font-weight: 300;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      line-height: 1.6;
+    }
+ 
+    /* Rule */
+    .rule {
+      width: 100%;
+      height: 1px;
+      background: var(--rule);
+      margin: 2rem 0;
+    }
+ 
+    /* Bio */
+    .bio {
+      font-size: 1.05rem;
+      font-weight: 300;
+      line-height: 1.75;
+      color: #3a3a36;
+      margin-bottom: 2.5rem;
+    }
+ 
+    .bio strong {
+      font-weight: 400;
+      color: var(--ink);
+    }
+ 
+    /* Links grid */
+    .links {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border: 1px solid var(--rule);
+    }
+ 
+    .link-item {
+      display: flex;
+      flex-direction: column;
+      padding: 0.9rem 1.1rem;
+      border-right: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      text-decoration: none;
+      color: var(--ink);
+      transition: background 0.15s ease, color 0.15s ease;
+      position: relative;
+      overflow: hidden;
+    }
+ 
+    .link-item:nth-child(2n) { border-right: none; }
+    .link-item:nth-last-child(-n+2) { border-bottom: none; }
+ 
+    .link-item:hover {
+      background: var(--accent);
+      color: var(--paper);
+    }
+ 
+    .link-item:hover .link-label,
+    .link-item:hover .link-desc {
+      color: var(--paper);
+    }
+ 
+    .link-label {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.25rem;
+      transition: color 0.15s ease;
+    }
+ 
+    .link-desc {
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.4;
+      transition: color 0.15s ease;
+    }
+ 
+    /* Footer */
+    .footer {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+ 
+    .location {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+ 
+    .year {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--rule);
+      letter-spacing: 0.04em;
+    }
+ 
+    /* Staggered link animation */
+    .link-item {
+      opacity: 0;
+      animation: rise 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .link-item:nth-child(1) { animation-delay: 0.35s; }
+    .link-item:nth-child(2) { animation-delay: 0.42s; }
+    .link-item:nth-child(3) { animation-delay: 0.49s; }
+    .link-item:nth-child(4) { animation-delay: 0.56s; }
+    .link-item:nth-child(5) { animation-delay: 0.63s; }
+    .link-item:nth-child(6) { animation-delay: 0.70s; }
+    .link-item:nth-child(7) { animation-delay: 0.77s; }
+    .link-item:nth-child(8) { animation-delay: 0.84s; }
+ 
+    @media (max-width: 480px) {
+      .links { grid-template-columns: 1fr; }
+      .link-item { border-right: none !important; }
+      .link-item:last-child { border-bottom: none; }
+      .link-item:nth-last-child(-n+2) { border-bottom: 1px solid var(--rule); }
+      .link-item:last-child { border-bottom: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+ 
+    <header class="header">
+      <h1 class="name">Zenifer<br><em>Cheru Veettil</em></h1>
+      <p class="tagline">Senior Solution Architect · Munich &nbsp;·&nbsp; MS Computer Science, UT Austin &nbsp;·&nbsp; Payments · ML</p>
+    </header>
+ 
+    <div class="rule"></div>
+ 
+    <p class="bio">
+      25 years building <strong>distributed systems and payment infrastructure</strong> in production.
+      Currently studying machine learning at graduate level — reinforcement learning, NLP, RLHF —
+      and transitioning from engineering consumer to <strong>open-source contributor</strong>.
+      Interested in the intersection of production systems reliability and ML evaluation.
+    </p>
+ 
+    <nav class="links" aria-label="Links">
+ 
+      <a class="link-item" href="https://github.com/sensei-wu" target="_blank" rel="noopener">
+        <span class="link-label">GitHub</span>
+        <span class="link-desc">Code, implementations &amp; experiments</span>
+      </a>
+ 
+      <a class="link-item" href="https://de.linkedin.com/in/zencv" target="_blank" rel="noopener">
+        <span class="link-label">LinkedIn</span>
+        <span class="link-desc">Professional profile</span>
+      </a>
+ 
+      <a class="link-item" href="https://docs.google.com/document/d/e/2PACX-1vQAEQUibNKwFyLVpjw7MIW6sFkGL06WHu--6e44EA9XFuOi5GMRLOw9ZN-qkcciRjdC1orL2_KeQ9wo/pub" target="_blank" rel="noopener">
+        <span class="link-label">CV</span>
+        <span class="link-desc">Full curriculum vitae</span>
+      </a>
+ 
+      <a class="link-item" href="https://www.credential.net/profile/zenifercheruveettil975176/wallet" target="_blank" rel="noopener">
+        <span class="link-label">Credentials</span>
+        <span class="link-desc">UT Austin verified badges</span>
+      </a>
+ 
+      <a class="link-item" href="https://stackoverflow.com/users/2702730/senseiwu" target="_blank" rel="noopener">
+        <span class="link-label">Stack Overflow</span>
+        <span class="link-desc">Q&amp;A contributions</span>
+      </a>
+ 
+      <a class="link-item" href="https://zen-cv.medium.com/" target="_blank" rel="noopener">
+        <span class="link-label">Medium</span>
+        <span class="link-desc">Technical writing</span>
+      </a>
+ 
+      <a class="link-item" href="http://blog.zenifer.com/" target="_blank" rel="noopener">
+        <span class="link-label">Blog (2014–)</span>
+        <span class="link-desc">Distributed systems &amp; architecture, legacy archive</span>
+      </a>
+ 
+      <a class="link-item" href="#" style="opacity:0.4; pointer-events:none;">
+        <span class="link-label">Substack</span>
+        <span class="link-desc">ML &amp; systems writing — coming soon</span>
+      </a>
+ 
+    </nav>
+ 
+    <footer class="footer">
+      <span class="location">Munich, Bavaria</span>
+      <span class="year">2026</span>
+    </footer>
+ 
+  </main>
+</body>
+</html>
